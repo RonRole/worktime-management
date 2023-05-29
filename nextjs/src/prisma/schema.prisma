@@ -1,0 +1,35 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id String @id
+  workTimeDetails WorkTimeDetail[]
+}
+
+model ProjectCode {
+  id              String           @id
+  name            String
+  workTimeDetails WorkTimeDetail[]
+}
+
+model WorkTimeDetail {
+  id            Int            @id @default(autoincrement())
+  user          User           @relation(fields: [userId], references: [id])
+  userId        String
+  projectCode   ProjectCode    @relation(fields: [projectCodeId], references: [id])
+  projectCodeId String
+  date          DateTime?
+  minutes       Int?
+  content       String?
+
+  @@index([userId, date(sort: Desc), minutes(sort: Desc)])
+}

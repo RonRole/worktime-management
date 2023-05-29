@@ -1,0 +1,15 @@
+version: '3'
+services:
+  nextjs:
+    build:
+      context: ./nextjs
+      dockerfile: ./Dockerfile
+    volumes:
+      - ./nextjs/sqlite3:/sqlite3
+      - ./nextjs/src:/app
+      - node_modules:/app/node_modules
+    ports:
+      - '3000:3000'
+    tty: true
+volumes:
+  node_modules:

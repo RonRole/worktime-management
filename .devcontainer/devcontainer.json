@@ -1,0 +1,17 @@
+{
+	"name": "Work Time Management",
+	"dockerComposeFile": "../docker-compose.yml",
+	"service": "nextjs",
+    "workspaceFolder": "/app",
+	"forwardPorts": [
+		3000
+	],
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"esbenp.prettier-vscode",
+				"dbaeumer.vscode-eslint"
+			]
+		}
+	}
+}
